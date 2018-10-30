@@ -1,3 +1,59 @@
-struct DesignableView {
-    var text = "Hello, World!"
+import UIKit
+
+@IBDesignable class DesignableView: UIView {
+    
+    private var gradientLayer: CAGradientLayer!
+    
+    @IBInspectable var topColor: UIColor = .red { didSet { setNeedsLayout() } }
+    @IBInspectable var bottomColor: UIColor = .clear { didSet { setNeedsLayout() } }
+    @IBInspectable var shadowColor: UIColor = .clear { didSet { setNeedsLayout() } }
+    @IBInspectable var shadowX: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var shadowY: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var shadowBlur: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var startPointX: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var startPointY: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var endPointX: CGFloat = 1 { didSet { setNeedsLayout() } }
+    @IBInspectable var endPointY: CGFloat = 1 { didSet { setNeedsLayout() } }
+    @IBInspectable var cornerRadius: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable var roundTopCorner: Bool = true { didSet { setNeedsLayout() } }
+    @IBInspectable var roundBottomCorner: Bool = true { didSet { setNeedsLayout() } }
+
+    override class var layerClass: AnyClass {
+        return CAGradientLayer.self
+    }
+    
+    override func layoutSubviews() {
+        self.gradientLayer = self.layer as? CAGradientLayer
+        self.gradientLayer.colors = [topColor.cgColor, bottomColor.cgColor]
+        self.gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
+        self.gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)
+        self.layer.shadowColor = shadowColor.cgColor
+        self.layer.shadowOffset = CGSize(width: shadowX, height: shadowY)
+        self.layer.shadowRadius = shadowBlur
+        self.layer.shadowOpacity = 1
+        self.roundCorners()
+    }
+    
+    private func roundCorners() {
+        if #available(iOS 11.0, *) {
+            self.layer.cornerRadius = cornerRadius
+            self.layer.maskedCorners = []
+            if self.roundTopCorner {
+                self.layer.maskedCorners.insert([.layerMinXMinYCorner, .layerMaxXMinYCorner])
+            }
+            if self.roundBottomCorner {
+                self.layer.maskedCorners.insert([.layerMinXMaxYCorner, .layerMaxXMaxYCorner])
+            }
+        } else {
+            let rectShape = CAShapeLayer()
+            rectShape.bounds = self.frame
+            rectShape.position = self.center
+            if self.roundTopCorner {
+                rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            }
+            if self.roundBottomCorner {
+                rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.bottomLeft, .bottomRight], cornerRadii: CGSize(width: 20, height: 20)).cgPath
+            }
+        }
+    }
 }
