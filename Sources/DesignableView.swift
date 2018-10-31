@@ -1,28 +1,28 @@
 import UIKit
 
-@IBDesignable class DesignableView: UIView {
+@IBDesignable public class DesignableView: UIView {
     
     private var gradientLayer: CAGradientLayer!
     
-    @IBInspectable var firstColor: UIColor = .red { didSet { setNeedsLayout() } }
-    @IBInspectable var secondColor: UIColor = .clear { didSet { setNeedsLayout() } }
-    @IBInspectable var shadowColor: UIColor = .clear { didSet { setNeedsLayout() } }
-    @IBInspectable var shadowX: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var shadowY: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var shadowBlur: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var startPointX: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var startPointY: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var endPointX: CGFloat = 1 { didSet { setNeedsLayout() } }
-    @IBInspectable var endPointY: CGFloat = 1 { didSet { setNeedsLayout() } }
-    @IBInspectable var cornerRadius: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable var roundTopCorner: Bool = true { didSet { setNeedsLayout() } }
-    @IBInspectable var roundBottomCorner: Bool = true { didSet { setNeedsLayout() } }
+    @IBInspectable public var firstColor: UIColor = .red { didSet { setNeedsLayout() } }
+    @IBInspectable public var secondColor: UIColor = .clear { didSet { setNeedsLayout() } }
+    @IBInspectable public var shadowColor: UIColor = .clear { didSet { setNeedsLayout() } }
+    @IBInspectable public var shadowX: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var shadowY: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var shadowBlur: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var startPointX: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var startPointY: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var endPointX: CGFloat = 1 { didSet { setNeedsLayout() } }
+    @IBInspectable public var endPointY: CGFloat = 1 { didSet { setNeedsLayout() } }
+    @IBInspectable public var cornerRadius: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var roundTopCorner: Bool = true { didSet { setNeedsLayout() } }
+    @IBInspectable public var roundBottomCorner: Bool = true { didSet { setNeedsLayout() } }
 
-    override class var layerClass: AnyClass {
+    override public class var layerClass: AnyClass {
         return CAGradientLayer.self
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         self.gradientLayer = self.layer as? CAGradientLayer
         self.gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
         self.gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
