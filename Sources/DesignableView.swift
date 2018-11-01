@@ -4,7 +4,7 @@ import UIKit
     
     private var gradientLayer: CAGradientLayer!
     
-    @IBInspectable public var firstColor: UIColor = .red { didSet { setNeedsLayout() } }
+    @IBInspectable public var firstColor: UIColor = .clear { didSet { setNeedsLayout() } }
     @IBInspectable public var secondColor: UIColor = .clear { didSet { setNeedsLayout() } }
     @IBInspectable public var shadowColor: UIColor = .clear { didSet { setNeedsLayout() } }
     @IBInspectable public var shadowX: CGFloat = 0 { didSet { setNeedsLayout() } }
