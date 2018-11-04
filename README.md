@@ -10,7 +10,8 @@
 
 ## Introduction
 
-Design a view as you want
+DesignableView for iOS.
+Design a view as you want.
 
 ## Installation
 
