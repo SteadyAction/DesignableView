@@ -12,9 +12,11 @@ import UIKit
     @IBInspectable public var shadowBlur: CGFloat = 0 { didSet { setNeedsLayout() } }
     @IBInspectable public var startPointX: CGFloat = 0 { didSet { setNeedsLayout() } }
     @IBInspectable public var startPointY: CGFloat = 0 { didSet { setNeedsLayout() } }
-    @IBInspectable public var endPointX: CGFloat = 1 { didSet { setNeedsLayout() } }
-    @IBInspectable public var endPointY: CGFloat = 1 { didSet { setNeedsLayout() } }
+    @IBInspectable public var endPointX: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var endPointY: CGFloat = 0 { didSet { setNeedsLayout() } }
     @IBInspectable public var cornerRadius: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var borderWidth: CGFloat = 0 { didSet { setNeedsLayout() } }
+    @IBInspectable public var borderColor: UIColor = .clear { didSet { setNeedsLayout() } }
     @IBInspectable public var roundTopCorner: Bool = true { didSet { setNeedsLayout() } }
     @IBInspectable public var roundBottomCorner: Bool = true { didSet { setNeedsLayout() } }
 
@@ -31,6 +33,8 @@ import UIKit
         self.layer.shadowOffset = CGSize(width: shadowX, height: shadowY)
         self.layer.shadowRadius = shadowBlur
         self.layer.shadowOpacity = 1
+        self.layer.borderColor = borderColor.cgColor
+        self.layer.borderWidth = borderWidth
         self.roundCorners()
     }
     
