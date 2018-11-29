@@ -10,9 +10,8 @@
 
 ## Introduction
 
-Customizing UIView Should be easier. 
-Use DesignableView instead.
-It helps you design a view as you want.
+Customizing UIView Should be easier. <br>
+Use DesignableView to design a view as you want.
 
 ## Installation
 
