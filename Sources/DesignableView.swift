@@ -34,7 +34,7 @@ import UIKit
         self.layer.shadowRadius = shadowBlur
         self.layer.shadowOpacity = 1
         self.layer.borderColor = borderColor.cgColor
-        self.layer.borderWidth = borderWidth
+        self.layer.borderWidth = borderWidth < 0 ? 1 / UIScreen.main.scale : borderWidth
         self.roundCorners()
     }
     
